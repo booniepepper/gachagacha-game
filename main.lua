@@ -87,8 +87,7 @@ end
 function love.draw()
   love.graphics.print("Type the full word \"quit\" to quit", 8, 8, 0, 2, 2)
 
-  for i = 1, #animals do
-    local animal = animals[i]
+  for _, animal in ipairs(animals) do
     local image = animal.image
     local iwidth = image:getWidth()
     local iheight = image:getHeight()
