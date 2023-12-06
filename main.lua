@@ -41,10 +41,10 @@ function love.load()
     {"u", love.audio.newSource("vcsl/steinway/c4.wav", "static")},
     {"i", love.audio.newSource("vcsl/steinway/d4.wav", "static")},
     {"o", love.audio.newSource("vcsl/steinway/e4.wav", "static")},
-    -- p
-    -- [
-    -- ]
-    -- \
+    {"p", love.audio.newSource("vcsl/steinway/c5.wav", "static")},
+    {"[", love.audio.newSource("vcsl/steinway/d5.wav", "static")},
+    {"]", love.audio.newSource("vcsl/steinway/e5.wav", "static")},
+    {"\\", love.audio.newSource("vcsl/steinway/c6.wav", "static")},
     {"z", love.audio.newSource("vcsl/mbira/c3.wav", "static")},
     {"x", love.audio.newSource("vcsl/mbira/d3.wav", "static")},
     {"c", love.audio.newSource("vcsl/mbira/g3.wav", "static")},
