@@ -20,6 +20,40 @@ function love.load()
     end
   end
 
+  sfx = {
+    {"a", love.audio.newSource("marimba/c2.wav", "static")},
+    {"s", love.audio.newSource("marimba/d2.wav", "static")},
+    {"d", love.audio.newSource("marimba/e2.wav", "static")},
+    {"f", love.audio.newSource("marimba/g2.wav", "static")},
+    {"g", love.audio.newSource("marimba/a2.wav", "static")},
+    {"h", love.audio.newSource("marimba/c3.wav", "static")},
+    {"j", love.audio.newSource("marimba/d3.wav", "static")},
+    {"k", love.audio.newSource("marimba/e3.wav", "static")},
+    {"l", love.audio.newSource("marimba/g3.wav", "static")},
+    {";", love.audio.newSource("marimba/a3.wav", "static")},
+    {"'", love.audio.newSource("marimba/c4.wav", "static")},
+    {"q", love.audio.newSource("vcsl/steinway/c2.wav", "static")},
+    {"w", love.audio.newSource("vcsl/steinway/d2.wav", "static")},
+    {"e", love.audio.newSource("vcsl/steinway/e2.wav", "static")},
+    {"r", love.audio.newSource("vcsl/steinway/c3.wav", "static")},
+    {"t", love.audio.newSource("vcsl/steinway/d3.wav", "static")},
+    {"y", love.audio.newSource("vcsl/steinway/e3.wav", "static")},
+    {"u", love.audio.newSource("vcsl/steinway/c4.wav", "static")},
+    {"i", love.audio.newSource("vcsl/steinway/d4.wav", "static")},
+    {"o", love.audio.newSource("vcsl/steinway/e4.wav", "static")},
+    -- p
+    -- [
+    -- ]
+    -- \
+    {"z", love.audio.newSource("vcsl/mbira/c3.wav", "static")},
+    {"x", love.audio.newSource("vcsl/mbira/d3.wav", "static")},
+    {"c", love.audio.newSource("vcsl/mbira/g3.wav", "static")},
+    {"v", love.audio.newSource("vcsl/mbira/c4.wav", "static")},
+    {"b", love.audio.newSource("vcsl/mbira/d4.wav", "static")},
+    {"n", love.audio.newSource("vcsl/mbira/g4.wav", "static")},
+    {"m", love.audio.newSource("vcsl/mbira/a4.wav", "static")},
+  }
+
   animals = {}
   imageN = math.random(1, #images)
   rot = 0
@@ -62,6 +96,8 @@ function love.keypressed(key)
     prevkeys = "qu"
   elseif key == "q" then
     prevkeys = "q"
+  else
+    prevkeys = ""
   end
 
   -- animals
@@ -81,6 +117,12 @@ function love.keypressed(key)
   end
 
   -- TODO: letters
+  for _, hit in ipairs(sfx) do
+    if key == hit[1] then
+      hit[2]:stop()
+      hit[2]:play()
+    end
+  end
 end
 
 
