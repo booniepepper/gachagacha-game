@@ -1,0 +1,4 @@
+#!/bin/sh
+
+/usr/bin/env love "$(dirname "$0")"
+
