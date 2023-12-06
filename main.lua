@@ -43,6 +43,11 @@ function love.update(dt)
     if animal.size < 0 then
       table.remove(animals, i)
     end
+
+    -- launch
+    animal.x = animal.x + animal.dx * dt
+    animal.y = animal.y + animal.dy * dt
+    animal.dy = animal.dy + dt * 1000
   end
 end
 
@@ -66,6 +71,10 @@ function love.keypressed(key)
     local i = math.random(1, #images)
     animal.image = images[i]
     animal.size = 1
+    animal.x = math.random(0, width)
+    animal.dx = math.random(-250, 250)
+    animal.y = math.random(0, height)
+    animal.dy = -1000
     animal.rot = 0
     animal.rotf = 1
     table.insert(animals, animal)
@@ -83,7 +92,7 @@ function love.draw()
     local image = animal.image
     local iwidth = image:getWidth()
     local iheight = image:getHeight()
-    love.graphics.draw(image, width/2, height/2, animal.rot, animal.size, animal.size, iwidth/2, iheight/2)
+    love.graphics.draw(image, animal.x, animal.y, animal.rot, animal.size, animal.size, iwidth/2, iheight/2)
   end
 end
 
