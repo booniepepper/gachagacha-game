@@ -20,40 +20,38 @@ function love.load()
     end
   end
 
-  sfx = {
-    {"a", love.audio.newSource("marimba/c2.wav", "static")},
-    {"s", love.audio.newSource("marimba/d2.wav", "static")},
-    {"d", love.audio.newSource("marimba/e2.wav", "static")},
-    {"f", love.audio.newSource("marimba/g2.wav", "static")},
-    {"g", love.audio.newSource("marimba/a2.wav", "static")},
-    {"h", love.audio.newSource("marimba/c3.wav", "static")},
-    {"j", love.audio.newSource("marimba/d3.wav", "static")},
-    {"k", love.audio.newSource("marimba/e3.wav", "static")},
-    {"l", love.audio.newSource("marimba/g3.wav", "static")},
-    {";", love.audio.newSource("marimba/a3.wav", "static")},
-    {"'", love.audio.newSource("marimba/c4.wav", "static")},
-    {"q", love.audio.newSource("vcsl/steinway/c2.wav", "static")},
-    {"w", love.audio.newSource("vcsl/steinway/d2.wav", "static")},
-    {"e", love.audio.newSource("vcsl/steinway/e2.wav", "static")},
-    {"r", love.audio.newSource("vcsl/steinway/c3.wav", "static")},
-    {"t", love.audio.newSource("vcsl/steinway/d3.wav", "static")},
-    {"y", love.audio.newSource("vcsl/steinway/e3.wav", "static")},
-    {"u", love.audio.newSource("vcsl/steinway/c4.wav", "static")},
-    {"i", love.audio.newSource("vcsl/steinway/d4.wav", "static")},
-    {"o", love.audio.newSource("vcsl/steinway/e4.wav", "static")},
-    {"p", love.audio.newSource("vcsl/steinway/c5.wav", "static")},
-    {"[", love.audio.newSource("vcsl/steinway/d5.wav", "static")},
-    {"]", love.audio.newSource("vcsl/steinway/e5.wav", "static")},
-    {"\\", love.audio.newSource("vcsl/steinway/c6.wav", "static")},
-    {"z", love.audio.newSource("vcsl/mbira/c3.wav", "static")},
-    {"x", love.audio.newSource("vcsl/mbira/d3.wav", "static")},
-    {"c", love.audio.newSource("vcsl/mbira/g3.wav", "static")},
-    {"v", love.audio.newSource("vcsl/mbira/c4.wav", "static")},
-    {"b", love.audio.newSource("vcsl/mbira/d4.wav", "static")},
-    {"n", love.audio.newSource("vcsl/mbira/g4.wav", "static")},
-    {"m", love.audio.newSource("vcsl/mbira/a4.wav", "static")},
+  local instrumentPairs = {
+    {"a", "marimba/c2.wav"}, {"s", "marimba/d2.wav"}, {"d", "marimba/e2.wav"}, {"f", "marimba/g2.wav"}, {"g", "marimba/a2.wav"},
+    {"h", "marimba/c3.wav"}, {"j", "marimba/d3.wav"}, {"k", "marimba/e3.wav"}, {"l", "marimba/g3.wav"}, {";", "marimba/a3.wav"},
+    {"'", "marimba/c4.wav"},
+    {"q", "vcsl/steinway/c2.wav"}, {"w", "vcsl/steinway/d2.wav"}, {"e", "vcsl/steinway/e2.wav"},
+    {"r", "vcsl/steinway/c3.wav"}, {"t", "vcsl/steinway/d3.wav"}, {"y", "vcsl/steinway/e3.wav"},
+    {"u", "vcsl/steinway/c4.wav"}, {"i", "vcsl/steinway/d4.wav"}, {"o", "vcsl/steinway/e4.wav"},
+    {"p", "vcsl/steinway/c5.wav"}, {"[", "vcsl/steinway/d5.wav"}, {"]", "vcsl/steinway/e5.wav"},
+    {"\\", "vcsl/steinway/c6.wav"},
+    {"1", "vcsl/mbira/c3.wav"}, {"2", "vcsl/mbira/d3.wav"}, {"3", "vcsl/mbira/g3.wav"},
+    {"4", "vcsl/mbira/c4.wav"}, {"5", "vcsl/mbira/d4.wav"}, {"6", "vcsl/mbira/g4.wav"},
+    {"7", "vcsl/mbira/c5.wav"},
   }
+  percussions = {
+    "vcsl/percussion/bass-drum-1.wav", "vcsl/percussion/bass-drum-2.wav", "vcsl/percussion/bongo-high-1.wav", "vcsl/percussion/bongo-high-2.wav",
+    "vcsl/percussion/bongo-low-1.wav", "vcsl/percussion/bongo-low-2.wav", "vcsl/percussion/conga-1.wav",      "vcsl/percussion/conga-2.wav",
+    "vcsl/percussion/quinto-1.wav",    "vcsl/percussion/quinto-2.wav",    "vcsl/percussion/rimshot.wav",      "vcsl/percussion/snare-roll.wav",
+    "vcsl/percussion/snare-tap.wav",   "vcsl/percussion/snare.wav",       "vcsl/percussion/timpani-1.wav",    "vcsl/percussion/timpani-2.wav",
+    "vcsl/percussion/tom-1.wav",       "vcsl/percussion/tom-2.wav",       "vcsl/percussion/tumba-1.wav",      "vcsl/percussion/tumba-2.wav",
+  }
+  local percussionKeys = {"z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "'", "-", "lctrl", "lalt", "rctrl", "ralt", "lshift", "rshift", "tab", "return"}
 
+  sfx = {}
+  for _, pair in ipairs(instrumentPairs) do
+    table.insert(sfx, {pair[1], love.audio.newSource(pair[2], "static")})
+  end
+  for i = 1, #percussions do
+    local sound = love.audio.newSource(percussions[i], "static")
+    table.insert(sfx, {percussionKeys[i], sound})
+    percussions[i] = sound
+  end
+  
   animals = {}
   imageN = math.random(1, #images)
   rot = 0
@@ -100,9 +98,7 @@ function love.keypressed(key)
     prevkeys = ""
   end
 
-  -- animals
-  -- TODO: sfx
-  if key == "space" then
+  -- pop up an animal!
     local animal = {}
     local i = math.random(1, #images)
     animal.image = images[i]
@@ -114,14 +110,20 @@ function love.keypressed(key)
     animal.rot = 0
     animal.rotf = 1
     table.insert(animals, animal)
-  end
 
-  -- TODO: letters
+  -- play a sound!
+  local matched = false
   for _, hit in ipairs(sfx) do
     if key == hit[1] then
       hit[2]:stop()
       hit[2]:play()
+      matched = true
     end
+  end
+  if not matched then
+    local percussion = percussions[math.random(1, #percussions)]
+    percussion:stop()
+    percussion:play()
   end
 end
 
@@ -136,5 +138,3 @@ function love.draw()
     love.graphics.draw(image, animal.x, animal.y, animal.rot, animal.size, animal.size, iwidth/2, iheight/2)
   end
 end
-
-
