@@ -8,10 +8,6 @@ function love.load()
   local _, _, flags = love.window.getMode()
   width, height = love.window.getDesktopDimensions(flags.display)
 
-  if not love.system.hasBackgroundMusic() then
-    -- Play some music
-  end
-
   local irasutoya = love.filesystem.getDirectoryItems("irasutoya")
   images = {}
   for i = 1, #irasutoya do
@@ -79,7 +75,7 @@ function love.update(dt)
     -- launch
     animal.x = animal.x + animal.dx * dt
     animal.y = animal.y + animal.dy * dt
-    animal.dy = animal.dy + dt * 1000
+    animal.dy = animal.dy + dt * 800
   end
 end
 
@@ -99,17 +95,17 @@ function love.keypressed(key)
   end
 
   -- pop up an animal!
-    local animal = {}
-    local i = math.random(1, #images)
-    animal.image = images[i]
-    animal.size = 1
-    animal.x = math.random(0, width)
-    animal.dx = math.random(-250, 250)
-    animal.y = math.random(0, height)
-    animal.dy = -1000
-    animal.rot = 0
-    animal.rotf = 1
-    table.insert(animals, animal)
+  local animal = {}
+  local i = math.random(1, #images)
+  animal.image = images[i]
+  animal.size = 1
+  animal.x = math.random(0, width)
+  animal.dx = math.random(-250, 250)
+  animal.y = math.random(0, height)
+  animal.dy = -800
+  animal.rot = 0
+  animal.rotf = 1
+  table.insert(animals, animal)
 
   -- play a sound!
   local matched = false
