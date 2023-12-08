@@ -1,4 +1,4 @@
-<img align="right" height="256" src="https://raw.githubusercontent.com/booniepepper/gachagacha-game/core/irasutoya/readme-only/chibikko_gang.png">
+<img align="right" height="256" src="https://media.githubusercontent.com/media/booniepepper/gachagacha-game/core/irasutoya/readme-only/chibikko_gang.png">
 
 # GachaGacha
 
