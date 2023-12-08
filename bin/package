@@ -1,3 +1,10 @@
 #!/bin/sh
 
-zip -9 -r GachaGacha.love "$(dirname "$0")"/.. -x '.git*' -x '*VCSL*' -x 'bin'
+cd "$(dirname "$0")"/..
+
+zip -9 -r GachaGacha.love . \
+    -x '.git*' \
+    -x '*VCSL*' \
+    -x 'bin' \
+    -x '*readme-only*' \
+    -x '*AppIcon*'
