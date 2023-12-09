@@ -15,7 +15,7 @@ clacking sound of a keyboard.
 
 ## Downloads
 
-...coming soon
+https://booniepepper.itch.io/gachagacha
 
 ## Credits
 
