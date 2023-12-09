@@ -28,3 +28,11 @@ Code: J.R. Hill 2023
 Sounds: [Versilian Community Sample Library](https://versilian-studios.com/vcsl/), [Mallet Percussion by joesh2](https://freesound.org/people/joesh2/packs/32432/)
 
 Images: [いらすとや](https://www.irasutoya.com/p/terms.html)
+
+## Related games
+
+The baby key-masher genre includes more than one game. When I started I knew (and was inspired by) only "bambam"
+
+* https://github.com/porridge/bambam
+* "AlphaBaby" (mac/ios) https://www.littlepotatosoftware.com
+* https://www.hanselman.com/babysmash
