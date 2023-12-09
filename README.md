@@ -8,10 +8,14 @@ Anyone under a certain age cannot withstand the allure of a keyboard. So many
 buttons, and the big folk sure love it...
 
 This is a very simple game built with [LÖVE](https://love2d.org) for the very
-young. When launched it runs full-screen and pressing keyboard keys 
+young.
 
 GachaGacha gets its name from ガチャガチャ, a Japanese onomatopoeia for the
 clacking sound of a keyboard.
+
+## Controls
+
+Any key: Make noises and animals
 
 ## Downloads
 
